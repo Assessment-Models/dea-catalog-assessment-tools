@@ -1,0 +1,144 @@
+# Assessment Tools — Catalog Registry
+# Umbrella index that points at the 4 domain-specific repositories
+
+catalog:
+  name: Enterprise Architecture Assessment Tools
+  abbreviation: ModAS-AT
+  id: dea:catalog-assessment-tools
+  version: "1.0.0-alpha"
+  status: draft
+  metamodel_version: "^0.1.0"
+
+  description: >
+    Umbrella catalog of assessment instruments. The actual instruments live in
+    four domain-specific repositories under the Assessment-Models organisation.
+    This repo provides the shared schema, scoring rubric, and registry.
+
+  repository: https://github.com/Assessment-Models/dea-catalog-assessment-tools
+
+  owner: TechNeHub Labs / Assessment Models
+  license: MIT
+
+  # Domains covered — each is a separate repository for independent lifecycle
+  domains:
+    - id: modernization
+      name: Architecture Modernization
+      repository: https://github.com/Assessment-Models/dea-assessment-modernization
+      maturity_target: dea:maturity-modernization
+      status: draft
+    - id: technology
+      name: Technology
+      repository: https://github.com/Assessment-Models/dea-assessment-technology
+      maturity_target: dea:maturity-technology
+      status: draft
+    - id: operations
+      name: Operations
+      repository: https://github.com/Assessment-Models/dea-assessment-operations
+      maturity_target: dea:maturity-operations
+      status: draft
+    - id: services-delivery
+      name: Services Delivery
+      repository: https://github.com/Assessment-Models/dea-assessment-services-delivery
+      maturity_target: dea:maturity-services-delivery
+      status: draft
+
+  # Uniform scoring — 4-point scale per question, summed to 0-100
+  scoring:
+    scale_per_question: [0, 1, 2, 3]
+    levels_per_question: 4
+    scoring_method: "sum / max_possible × 100"
+    bands:
+      - id: band-1
+        name: Ad Hoc
+        range: [0, 25]
+        colour: "#f85149"
+      - id: band-2
+        name: Defined
+        range: [26, 50]
+        colour: "#f0883e"
+      - id: band-3
+        name: Managed
+        range: [51, 75]
+        colour: "#d29922"
+      - id: band-4
+        name: Quantitatively Managed
+        range: [76, 90]
+        colour: "#2dd4bf"
+      - id: band-5
+        name: Optimising
+        range: [91, 100]
+        colour: "#3fb950"
+
+  relationships:
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:catalog-assessment-tools
+      relationship_type: self-references
+      description: Top-level registry of all assessment domains
+
+    # Each domain assessment is in its own repo
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:assessment-modernization
+      relationship_type: hosts
+      description: Modernization instrument lives in dea-assessment-modernization repo
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:assessment-technology
+      relationship_type: hosts
+      description: Technology instrument lives in dea-assessment-technology repo
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:assessment-operations
+      relationship_type: hosts
+      description: Operations instrument lives in dea-assessment-operations repo
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:assessment-services-delivery
+      relationship_type: hosts
+      description: Services Delivery instrument lives in dea-assessment-services-delivery repo
+
+    # Each assessment scores a maturity model
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:maturity-modernization
+      relationship_type: produces-score-for
+      description: Modernization assessment maps to modernization maturity levels
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:maturity-technology
+      relationship_type: produces-score-for
+      description: Technology assessment maps to technology maturity levels
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:maturity-operations
+      relationship_type: produces-score-for
+      description: Operations assessment maps to operations maturity levels
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:maturity-services-delivery
+      relationship_type: produces-score-for
+      description: Services Delivery assessment maps to services delivery maturity levels
+
+    # Tied to overall EA maturity
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:maturity-ea-capability
+      relationship_type: contributes-to
+      description: All four domain assessments contribute to overall EA capability score
+
+    # Used in DERA Phase 4
+    - source_id: dea:catalog-assessment-tools
+      target_id: dea:reference-dera
+      relationship_type: used-by
+      description: DERA Phase 4 governance activation uses assessments as health metrics
+
+  content:
+    - path: assessments/scoring-rubric.md
+      type: Documentation
+      description: Uniform scoring rubric — bands, dimension weights, methodology
+    - path: assessments/methodology.md
+      type: Documentation
+      description: How to run self-assessment vs facilitated workshop
+    - path: schemas/instrument.schema.json
+      type: JSONSchema
+      description: Schema that all domain instrument YAMLs must validate against
+
+  tags:
+    - assessment
+    - maturity
+    - scoring-rubric
+    - modernization
+    - technology
+    - operations
+    - services-delivery

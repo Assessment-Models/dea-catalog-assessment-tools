@@ -1,0 +1,31 @@
+name: Validate Catalog
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate index.yaml
+        run: |
+          python -c "
+          import yaml
+          with open('assessments/index.yaml') as f:
+              doc = yaml.safe_load(f)
+          assert doc['id'] == 'dea:catalog-assessment-tools', 'id mismatch'
+          assert len(doc['domains']) == 4, f'expected 4 domains, got {len(doc[\"domains\"])}'
+          print('OK — index.yaml valid')
+          "
+      - name: Validate JSON schema
+        run: |
+          python -c "
+          import json
+          with open('schemas/instrument.schema.json') as f:
+              schema = json.load(f)
+          assert schema['title'] == 'DEA Assessment Instrument', 'schema title mismatch'
+          print('OK — schema valid')
+          "
