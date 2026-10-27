@@ -10,22 +10,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pyyaml
+        run: pip install pyyaml
       - name: Validate index.yaml
         run: |
-          python -c "
+          python - <<'EOF'
           import yaml
           with open('assessments/index.yaml') as f:
               doc = yaml.safe_load(f)
-          assert doc['id'] == 'dea:catalog-assessment-tools', 'id mismatch'
-          assert len(doc['domains']) == 4, f'expected 4 domains, got {len(doc[\"domains\"])}'
+          catalog = doc['catalog']
+          assert catalog['id'] == 'dea:catalog-assessment-tools', 'id mismatch'
+          domains = catalog['domains']
+          assert len(domains) == 4, f"expected 4 domains, got {len(domains)}"
+          for d in domains:
+              assert d['maturity_target'] == f"dea:maturity-{d['id']}", d['id']
           print('OK — index.yaml valid')
-          "
+          EOF
       - name: Validate JSON schema
         run: |
-          python -c "
+          python - <<'EOF'
           import json
           with open('schemas/instrument.schema.json') as f:
               schema = json.load(f)
           assert schema['title'] == 'DEA Assessment Instrument', 'schema title mismatch'
           print('OK — schema valid')
-          "
+          EOF
+      - name: Cross-check domain entries against assessment-registry records
+        run: |
+          python - <<'EOF'
+          import urllib.request, yaml
+          with open('assessments/index.yaml') as f:
+              domains = yaml.safe_load(f)['catalog']['domains']
+          base = ('https://raw.githubusercontent.com/Assessment-Models/'
+                  'assessment-registry/main/registry/assessment-models')
+          for d in domains:
+              repo = d['repository'].rsplit('/', 1)[-1]
+              record = yaml.safe_load(
+                  urllib.request.urlopen(f'{base}/{repo}.yaml', timeout=15).read())
+              assert record['source']['repository'] == repo, repo
+              assert record['status'] in ('active', 'candidate-for-migration', 'legacy'), \
+                  f"{repo}: unexpected status {record['status']}"
+              print(f"OK — {repo} registered (status: {record['status']})")
+          EOF

@@ -16,10 +16,12 @@ This is the **umbrella index** for the assessment catalog. The actual instrument
 | Services Delivery | [dea-assessment-services-delivery](https://github.com/Assessment-Models/dea-assessment-services-delivery) | Time-to-market, defect rates, customer outcomes |
 
 This repo holds:
-- The **catalog index** (`assessments/index.yaml`) — registry of all assessment instruments and their versions
+- The **catalog index** (`assessments/index.yaml`) — a legacy v1-alpha catalog view of the assessment instruments. The **authoritative registry of ecosystem assets is [assessment-registry](https://github.com/Assessment-Models/assessment-registry)**; the index is cross-checked against its registration records by CI
 - **Shared schemas** (`schemas/instrument.schema.json`) — uniform format all instruments must follow
 - **Shared scoring rubric** (`assessments/scoring-rubric.md`) — bands and dimension framework
 - **Methodology** — how to run a self-assessment vs a facilitated workshop
+
+To discover assets, versions and compatibility across the whole ecosystem, use the [assessment-registry](https://github.com/Assessment-Models/assessment-registry) — it answers what exists, which version is active, which contract each asset conforms to, and how assets relate.
 
 ---
 
