@@ -1,5 +1,9 @@
-# Assessment Tools — Catalog Registry
-# Umbrella index that points at the 4 domain-specific repositories
+# Assessment Tools — Catalog Index (registry view)
+#
+# SUPERSEDED AS THE AUTHORITATIVE INDEX. The canonical registry of ecosystem
+# assets is Assessment-Models/assessment-registry; this file is a legacy
+# catalog view retained for consumers of the v1-alpha scheme. Each domain
+# entry below is cross-checked against its registration record by CI.
 
 catalog:
   name: Enterprise Architecture Assessment Tools
