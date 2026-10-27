@@ -27,8 +27,9 @@ jobs:
           domains = catalog['domains']
           assert len(domains) == 4, f"expected 4 domains, got {len(domains)}"
           for d in domains:
-              assert d['maturity_target'] == f"dea:maturity-{d['id']}", d['id']
-          print('OK — index.yaml valid')
+              assert d['registry_id'] == f"dea-assessment-{d['id']}", d['id']
+              assert d['registry_status'] == 'active', d['id']
+          print('OK — index.yaml valid (generated view)')
           EOF
       - name: Validate JSON schema
         run: |
