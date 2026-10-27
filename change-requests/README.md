@@ -7,6 +7,7 @@ CRs follow the **land-as-authored** convention: the file in `change-requests/` i
 | CR | Title | Status | Landed | Source PR |
 |----|-------|--------|--------|-----------|
 | [CR-AM-01](CR-AM-01.md) | OpenDEA Assessment Metamodel Evolution — Establish a Composable Assessment, Capability, Maturity and Benchmarking Model | Accepted | 2026-08-20 | this PR |
+| [CR-AM-01 Release 1 Decision](CR-AM-01-release-1-decision.md) | Release 1 decision record — legacy cluster disposition (D-1), scoring proposal PR #1 (D-2), instrument record status (D-3), catalog index end-state (D-4) | Proposed | — | this PR |
 
 ---
 
@@ -17,6 +18,7 @@ CRs follow the **land-as-authored** convention: the file in `change-requests/` i
 | [`CR-AM-01.md`](CR-AM-01.md) | The CR itself (authoritative spec, 56 sections) |
 | [`../docs/rationale/CR-AM-01-companion-rationale.md`](../docs/rationale/CR-AM-01-companion-rationale.md) | Companion rationale (the original explanatory document) |
 | [`../docs/rationale/CR-AM-01-decision-points.md`](../docs/rationale/CR-AM-01-decision-points.md) | Decision-point index, phased roadmap, parking lot, ACs, glossary |
+| [`CR-AM-01-release-1-decision.md`](CR-AM-01-release-1-decision.md) | Release 1 decision record (D-1..D-4): legacy disposition, PR #1, instrument status, index end-state |
 
 ---
 
