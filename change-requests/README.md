@@ -7,7 +7,8 @@ CRs follow the **land-as-authored** convention: the file in `change-requests/` i
 | CR | Title | Status | Landed | Source PR |
 |----|-------|--------|--------|-----------|
 | [CR-AM-01](CR-AM-01.md) | OpenDEA Assessment Metamodel Evolution — Establish a Composable Assessment, Capability, Maturity and Benchmarking Model | Accepted | 2026-08-20 | this PR |
-| [CR-AM-01 Release 1 Decision](CR-AM-01-release-1-decision.md) | Release 1 decision record — legacy cluster disposition (D-1), scoring proposal PR #1 (D-2), instrument record status (D-3), catalog index end-state (D-4) | Proposed | — | this PR |
+| [CR-AM-06](CR-AM-06.md) | First-Class Component Registry (maturity-components) — first taxonomy-named repo, resolvable component chain | Proposed | — | (pending PR) |
+| [CR-AM-01 Release 1 Decision](CR-AM-01-release-1-decision.md) | Release 1 decision record — legacy cluster disposition (D-1), scoring proposal PR #1 (D-2), instrument record status (D-3), catalog index end-state (D-4) | **Decided** | 2026-10-27 | #3 |
 
 ---
 

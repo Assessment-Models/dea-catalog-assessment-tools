@@ -2,7 +2,7 @@
 
 Change Request ID: DEA-CR-Assessment-001-R1
 Title: CR-AM-01 Release 1 — Legacy Cluster Disposition and Maturity Band Scheme
-Status: Proposed (awaiting decision)
+Status: Decided (2026-10-27) — D-1: Plan B (freeze legacy cluster); D-2: close superseded; D-3: instruments active; D-4: manual view now, generated view when fan-out lands
 Decision Owner: Assessment-Models governance + technehub-labs/dea-metamodel owners
 Primary Repository: dea-catalog-assessment-tools
 Affected Repositories: dea-catalog-maturity-models, dea-assessment-{modernization,technology,operations,services-delivery}, assessment-registry, assessment-ci
@@ -128,16 +128,16 @@ CI cross-checks its entries against registry records. Remaining choice:
 
 **Recommendation:** D-4a now, D-4b when cross-repo fan-out lands.
 
-## 7. Execution checklist (once decided)
+## 7. Execution checklist (executed 2026-10-27 — see PRs registry#7, maturity-models#4, and the superseded PR #1 closure recorded in §4)
 
 | # | Action | Repo | Depends on |
 |---|--------|------|------------|
-| 1 | Record decisions D-1..D-4 in this file; set Status: Decided | dea-catalog-assessment-tools | — |
-| 2 | Close PR #1 as superseded (with credit comment) | dea-catalog-maturity-models | D-2 |
-| 3 | Flip instrument registry records to `status: active` + scoring-target notes | assessment-registry | D-3 |
-| 4 | Add `superseded_by` to the legacy catalog record per D-1 | assessment-registry | D-1 |
-| 5 | Update MIGRATION.md from "decision deferred" to the decided outcome | dea-catalog-maturity-models | D-1 |
-| 6 | (If D-1 = A) execute the §26 migration pipeline per model | new maturity-model-* repos | D-1 |
+| 1 | Record decisions D-1..D-4 in this file; set Status: Decided | dea-catalog-assessment-tools | ✅ done (this update) |
+| 2 | Close PR #1 as superseded (with credit comment) | dea-catalog-maturity-models | ✅ no-op — PR #1 was already merged (2026-08-21); supersession recorded with credit in §4 and MIGRATION.md |
+| 3 | Flip instrument registry records to `status: active` + scoring-target notes | assessment-registry | ✅ done (PR #7, merged) |
+| 4 | Add `superseded_by` to the legacy catalog record per D-1 | assessment-registry | ✅ done (PR #7 notes → CR-AR-05 machine-readable field, PR #8 merged) |
+| 5 | Update MIGRATION.md from "decision deferred" to the decided outcome | dea-catalog-maturity-models | ✅ done (PR #4, merged) |
+| 6 | (If D-1 = A) execute the §26 migration pipeline per model | new maturity-model-* repos | n/a — D-1 = B |
 
 ## 8. Impact summary
 
